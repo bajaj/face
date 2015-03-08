@@ -40,7 +40,7 @@ if(isset($_REQUEST['id']))
 	
 	
 				if (!file_exists($target_dir.$name)) {
-			mkdir($target_dir.$dir, 0777, true);
+			mkdir($target_dir.$name, 0777, true);
 		}
   
 		$sql = "SELECT dir,count,name FROM directory where id={$id} LIMIT 1";
@@ -55,7 +55,7 @@ if(isset($_REQUEST['id']))
 					//imagejpeg($image, "images/file_"+$row['count']+1+".jpg");
 					$dir=$row['dir'];
 					
-					$dir_name=$row['name']
+					$dir_name=$row['name'];
 					
 					$sql = "update directory set count=count+1 where dir='".$dir."'";
 					$result = $conn->query($sql);
