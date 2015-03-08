@@ -1,0 +1,94 @@
+<html>
+<head>
+
+    <title>Face</title>
+
+<script src="webcam.js"></script>
+</head>
+
+<body style="align-content:center">
+
+<div id="my_camera" style="width:520px; height:440px;margin:50px;"></div>
+    <div id="my_result"></div>
+
+    <script language="JavaScript">
+
+        function sleep(miliseconds) {
+            var currentTime = new Date().getTime();
+
+            while (currentTime + miliseconds >= new Date().getTime()) {
+            }
+        }
+
+        Webcam.set(
+            {
+                width: 500,
+                height: 500,
+                dest_width: 500,
+                dest_height:500,
+                image_format: 'jpeg'
+
+            });
+
+        Webcam.attach('#my_camera');
+
+        var arr = [];
+
+        function take_photo()
+        {
+            var data_uri = "";
+            Webcam.snap(function (data_uri) {
+                  data_uri2 = data_uri;
+                
+            //    arr.push(data_uri);
+            });
+
+            Webcam.upload(data_uri2, 'face_process.php');
+        }
+
+        function take_snapshot() {
+
+            for (var i = 0; i < 10; i++) {
+
+             //   var data_uri2 = "";
+
+               
+
+                take_photo();
+
+                sleep(1000);
+
+        //        Webcam.on('uploadProgress', function (progress) {
+                    // Upload in progress
+                    // 'progress' will be between 0.0 and 1.0
+
+          //      });
+
+    //            Webcam.on('uploadComplete', function (code, text) {
+                    // Upload complete!
+                    // 'code' will be the HTTP response code from the server, e.g. 200
+                    // 'text' will be the raw response content
+
+
+      //          });
+
+                
+
+              //  sleep(1000);
+            }
+
+        }
+
+
+
+
+    </script>
+
+   
+
+    <input type="button" value="Take Snapshot" onclick="take_snapshot();"/>
+
+</body>
+
+
+</html>
